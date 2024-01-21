@@ -1,5 +1,21 @@
+@mixin mobile{
+    @media screen and (max-width:480px){
+        @content;
+    }
+}
+@mixin tablet{
+    @media screen and (max-width:768px){
+        @content;
+    }
+}
+@mixin laptop{
+    @media screen and (max-width:1200px){
+        @content;
+    }
+}
+
 .App{
-    font-family: 'Futura Futuris', sans-serif;
+    font-family: 'Futura Futuris', sans-serif;  
 }
 .formContainer{
     background-color: #a7bcff;
@@ -9,23 +25,30 @@
     justify-content: center;
 }
 .formWrapper{
+    // width:50%;
     background-color: white;
-    padding: 20px 60px;
+    padding: 20px 100px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
     .logo{
+        // padding-bottom: 27%; ;
+        align-items: center;
         color:#5d5b8b;
-        font-weight: bold;
-        font-size: 30px;
-    
+        
+        img{
+
+            width: 160px;
+            height: 160px;
+        }
     }
     .title{
         color:#5d5b8b;
         
-        font-size: 16px;
+        font-weight: 500;
+        font-size: 30px;
     }
     form{
         display: flex;
@@ -34,6 +57,7 @@
         input{
             padding:  15px;
             border: none;
+            outline: none;
             border-bottom: 1px solid#a7bcff;
             &::placeholder{
                 color: #5d5b8b
@@ -52,6 +76,7 @@
             }
         }
         button{
+            // width:70%;
             background-color: #7b96ec;
             border-radius: 10px;
             color:white;
@@ -106,6 +131,9 @@
                             display: none;
                           }
                     }
+                    // @include tablet{
+                    //     display: none;
+                    // }
                     
                 }
                 .user{
@@ -126,6 +154,7 @@
                         border:none;
                         border-radius: 5px;
                         cursor: pointer;
+                        
                     }
                     span{
                         padding-top: 10px;
@@ -254,6 +283,7 @@
                     height: 24px;
                     cursor: pointer;
                 }
+                
             }
             .messages{
                 background-color: #ddddf7;
