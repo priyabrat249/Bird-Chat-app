@@ -1,10 +1,11 @@
+/* eslint-disable default-case */
 import { getAuth, createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { getApp } from "firebase/app";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage"; 
 import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore"; 
 import {auth,storage,db} from "../firebase.js"
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import Add from "../img/addAvatar.png"
 import logo from "../img/logo.ico"
 function Register() {
@@ -46,16 +47,13 @@ function Register() {
             }
           }, 
           (error) => {
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
             switch (error.code) {
               case 'storage/unauthorized':
                 setUpMessage("Unauthorized user");
-                // User doesn't have permission to access the object
+                
                 break;
               case 'storage/canceled':
                 setUpMessage("Upload cancelled");
-                // User canceled the upload
                 break;
         
               // ...
@@ -96,11 +94,7 @@ function Register() {
         setErr(true);
         const errorCode = error.code;
         setErrMessage(errorMessage);
-      });;
-      
-    
-      
-      
+      });;   
 
   }
     return (
@@ -121,7 +115,7 @@ function Register() {
             </label>        
             <button>Sign Up</button>
           </form>
-          <p>You do have an  account? Login</p>
+          <p>You do have an  account? <Link to="/login">login</Link></p>
           {err && <span style={{color:"red"}}>{errMessage.substr(10)}</span> }
         </div>
       </div>

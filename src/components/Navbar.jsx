@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../img/logo.ico'
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase.js";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import { AuthContext } from '../AuthContext.js';
 const Navbar = () => {
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
+  const displayName = currentUser.displayName;
+  const photoURL = currentUser.photoURL;
+
   const handleSubmit = () => { 
     signOut(auth);
     navigate("/login");
@@ -18,8 +23,8 @@ const Navbar = () => {
         </span>
       </div> 
           <div className='user'>
-              <img src="https://images.pexels.com/photos/19804308/pexels-photo-19804308/free-photo-of-aisha_.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt='' />
-              <span>Jesica</span>
+        <img src={photoURL} alt='' />
+        <span>{ displayName}</span>
               <button onClick={handleSubmit}>logout</button>
           </div>
     </div>
